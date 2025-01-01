@@ -2,6 +2,27 @@
 <h3 align="center">- Just Ceal It -</h3>
 </br>
 
+## Nginx 配置参考
+```
+http {  
+  server {    
+    server_name *.YOU;    
+    listen 443 ssl;    
+    ssl_certificate Cealing-Cert.pem;    
+    ssl_certificate_key Cealing-Key.pem;    
+    proxy_ssl_name E0;    
+    resolver x.x.x.x ipv4=off;
+    
+    location / {      
+      if ($http_host ~* ^(.+).googlevideo.com$) {        
+        proxy_pass https://$1.gvt1.com;      
+      }    
+    }  
+  }
+}
+```
+
+
 ## 其他语言
 [English README](README_EN.md)
 
